@@ -74,6 +74,12 @@
         ::-webkit-scrollbar-thumb:hover {
             background: #a67c1e;
         }
+        /* Preserve formatting for note content display */
+        .note-display {
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+        }
     </style>
 </head>
 <body class="text-earth-800 min-h-screen flex flex-col selection:bg-earth-300 selection:text-earth-900 pb-16 md:pb-0">
@@ -159,7 +165,7 @@
     <div id="pwa-ios-instructions" class="hidden bg-earth-50 border-b border-earth-200 py-4 px-4 text-center text-xs text-earth-700">
         <div class="max-w-xl mx-auto flex flex-col items-center gap-2">
             <p class="font-semibold">Installing on iPhone/iPad:</p>
-            <p>Tap the Share button <span class="bg-earth-200 px-1.5 py-0.5 rounded text-[10px]">⎙</span> in your Safari browser and select <strong class="text-earth-900">Add to Home Screen</strong> to use this guide completely offline in the desert.</p>
+            <p>Tap the Share button <span class="bg-earth-200 px-1.5 py-0.5 rounded text-[10px]">⎙</span> in your Safari browser and select <strong class="text-earth-900">Add to Home Screen</strong>.</p>
             <button onclick="dismissiOSInstructions()" class="text-[10px] text-earth-500 underline hover:text-earth-700">Dismiss instruction</button>
         </div>
     </div>
@@ -191,7 +197,7 @@
             <section class="bg-white border border-earth-200 p-6 rounded-3xl shadow-sm">
                 <h2 class="serif-title text-xl font-bold text-earth-800 mb-6 flex items-center gap-2">
                     <svg class="w-5 h-5 text-earth-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"/>
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V7" />
                     </svg>
                     Interactive journey route map
                 </h2>
@@ -205,7 +211,7 @@
                             </div>
                             <div class="flex justify-center mb-2 mt-2">
                                 <svg class="w-8 h-8 text-earth-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M12 22V11m0 0a3 3 0 00-3-3H6.5a3 3 0 00-3 3v10h17V11a3 3 0 00-3-3H15a3 3 0 00-3 3zm-6-3V7a1 1 0 011-1h1a1 1 0 011 1v11m6-3V7a1 1 0 011-1h1a1 1 0 011 1v11"/>
+                                    <path d="M12 22V11m0 0a3 3 0 00-3-3H6.5a3 3 0 00-3 3v10h17V11a3 3 0 00-3-3H15a3 3 0 00-3 3zm-6-3V7a1 1 0 011-1h1a1 1 0 011 1v11m6-3V7a1 1 0 011-1h1a1 1 0 011 1v11" />
                                     <path d="M12 2s1.5 2 1.5 3h-3S12 2 12 2z" fill="currentColor"/>
                                 </svg>
                             </div>
@@ -227,7 +233,7 @@
                             </div>
                             <div class="flex justify-center mb-2 mt-2">
                                 <svg class="w-8 h-8 text-islamic-clay" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" />
+                                    <path d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V7" />
                                 </svg>
                             </div>
                             <h3 class="font-bold text-sm text-earth-800">Miqat & 1st Umrah</h3>
@@ -320,7 +326,7 @@
                     </div>
                     
                     <!-- Global Companion Options -->
-                    <button onclick="resetChecklists()" class="w-full sm:w-auto bg-white border border-earth-200 hover:border-earth-400 hover:text-earth-900 px-4 py-2.5 rounded-xl text-xs font-semibold text-earth-600 transition-all duration-200 flex items-center justify-center gap-1.5 shadow-sm">
+                    <button onclick="resetChecklists()" class="w-full sm:w-auto bg-white border border-earth-200 hover:border-earth-400 hover:text-earth-900 px-4 py-2.5 rounded-xl text-xs font-semibold transition-all flex items-center gap-2">
                         <!-- Reset / Arrow Rotation SVG -->
                         <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M21.5 2v6h-6M21.34 15.57a10 10 0 11-.57-8.38l5.67-5.67"/>
@@ -351,7 +357,7 @@
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                     <!-- Notes Sidebar (List of Notes) -->
                     <div class="md:col-span-1 flex flex-col gap-4">
-                        <button onclick="createNewNote()" class="w-full bg-earth-500 hover:bg-earth-600 text-white py-3 px-4 rounded-xl text-sm font-semibold shadow-sm transition-all flex items-center justify-center gap-2">
+                        <button onclick="createNewNote()" class="w-full bg-earth-500 hover:bg-earth-600 text-white py-3 px-4 rounded-xl text-sm font-semibold shadow-sm transition-all flex items-center gap-2">
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />
                             </svg>
@@ -396,7 +402,7 @@
                     <line x1="12" y1="9" x2="12" y2="13"/>
                     <line x1="12" y1="17" x2="12.01" y2="17"/>
                 </svg>
-                <strong>Planning caution:</strong> This program may be updated dynamically due to local atmospheric conditions, Hajj ministry updates, transportation challenges, or sudden emergencies. Your flexibility, patience, and kind understanding are deeply appreciated.
+                <strong>Planning caution:</strong> This program may be updated dynamically due to local atmospheric conditions, Hajj ministry updates, transportation challenges, or sudden emergencies.
             </p>
             <p class="text-xs text-earth-500">
                 Design & Engineering optimized for Hajj 1447H / 2026. Data extracted from <span class="font-semibold italic text-earth-600">"Hac Gold short Hajj Tagesablauf.pdf"</span> verbatim.
@@ -462,7 +468,7 @@
                 badgeText: "Phase 2: First Umrah",
                 items: [
                     { time: "03:00 - 07:00", desc: "Praying Tahajjud, Azkar, Fajr inside Masjid Nabawi & Salatu Salam.", mode: "walk" },
-                    { time: "Afternoon", desc: "Transition from Madinah to Makkah. Donning the Ihram, making Niyah (intent) for First Umrah, and bus transfer to Mina (Muasim). Perform First Umrah upon arrival.", mode: "bus" }
+                    { time: "Afternoon", desc: "Transition from Madinah to Makkah. Donning the Ihram, making Niyah (intent) for First Umrah, and bus transfer to Mina (Muasim). Perform First Umrah.", mode: "bus" }
                 ]
             },
             {
@@ -631,7 +637,7 @@
                 id: "default-dua",
                 title: "Personal Du'as checklist",
                 category: "Du'as",
-                content: "1. Guidance and pure intentions for Hajj acceptance.\n2. Good health and easy transitions for the family.\n3. Mercy and forgiveness for all departed ancestors.\n4. Blessing and ease for my friends and relatives.",
+                content: "1. Guidance and pure intentions for Hajj acceptance.\n2. Good health and easy transitions for the family.\n3. Mercy and forgiveness for all departed ancestors.\n4. Blessings upon the Prophet and his family.",
                 date: "May 10, 2026"
             }
         ];
@@ -704,7 +710,7 @@
                     itemHTML += `
                         <div class="flex flex-col md:flex-row md:items-center gap-3 p-3 rounded-2xl bg-earth-50/50 border border-earth-200/60 hover:border-earth-300 transition-all duration-200">
                             <div class="flex items-center gap-3 min-w-[200px]">
-                                <input type="checkbox" id="${taskKey}" onchange="toggleTask('${taskKey}')" ${isChecked} class="w-5 h-5 rounded accent-earth-500 focus:ring-earth-500 focus:ring-opacity-25 bg-white border-earth-200 cursor-pointer">
+                                <input type="checkbox" id="${taskKey}" onchange="toggleTask('${taskKey}')" ${isChecked} class="w-5 h-5 rounded accent-earth-500 focus:ring-earth-500 focus:ring-opacity-50">
                                 <span class="text-xs font-bold bg-white text-earth-700 px-3 py-1.5 rounded-lg border border-earth-200 uppercase tracking-wider">${item.time}</span>
                             </div>
                             <div class="flex-grow">
@@ -753,13 +759,13 @@
                                 <line x1="16" y1="17" x2="8" y2="17"></line>
                             </svg>
                             <span>Daily notes diary for Day ${day.day}</span>
-                            <svg id="chevron-note-${day.day}" class="w-4 h-4 ml-auto transition-transform duration-200 inline-block align-middle" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                            <svg id="chevron-note-${day.day}" class="w-4 h-4 ml-auto transition-transform duration-200 inline-block align-middle" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                                 <polyline points="6 9 12 15 18 9"></polyline>
                             </svg>
                         </div>
                         <div id="note-container-${day.day}" class="hidden mt-2">
-                            <textarea id="textarea-note-${day.day}" oninput="saveDailyNote(${day.day})" placeholder="Write reflections, flight gate details, roommates, or local milestones here..." 
-                                      class="w-full h-24 bg-earth-50 border border-earth-200 rounded-xl p-3 text-xs text-earth-700 focus:outline-none focus:border-earth-500 transition-all resize-none">${savedNote}</textarea>
+                            <textarea id="textarea-note-${day.day}" oninput="saveDailyNote(${day.day})" placeholder="Write reflections, flight gate details, roommates, or local milestones here..."
+                                      class="w-full h-24 bg-earth-50 border border-earth-200 rounded-xl p-3 text-xs text-earth-700 focus:outline-none focus:border-earth-500 transition-all resize-none"></textarea>
                         </div>
                     </div>
                 `;
@@ -865,6 +871,9 @@
             if (container.classList.contains('hidden')) {
                 container.classList.remove('hidden');
                 chevron.classList.add('rotate-180');
+                // Load saved note
+                const savedNote = localStorage.getItem(`note-day-${dayNum}`) || '';
+                document.getElementById(`textarea-note-${dayNum}`).value = savedNote;
             } else {
                 container.classList.add('hidden');
                 chevron.classList.remove('rotate-180');
@@ -998,40 +1007,20 @@
                     return;
                 }
 
-                const noteTitle = activeNote.title;
-                const noteDate = activeNote.date;
-                const noteCategory = activeNote.category;
-                const noteId = activeNote.id;
-                const noteContentHTML = activeNote.content || '<span class="italic text-earth-400">No content inside this note.</span>';
-
                 pane.innerHTML = `
-                    <div class="flex flex-col justify-between h-full space-y-6">
+                    <div class="flex flex-col gap-4 h-full">
                         <div>
-                            <div class="flex justify-between items-start border-b border-earth-200 pb-3 mb-4">
-                                <div>
-                                    <h3 class="serif-title font-bold text-xl text-earth-900 mb-1">${noteTitle}</h3>
-                                    <span class="text-xs text-earth-400">${noteDate}</span>
-                                </div>
-                                <span class="text-xs font-bold text-earth-700 bg-earth-200/60 px-3 py-1 rounded-full capitalize">
-                                    ${noteCategory}
-                                </span>
-                            </div>
-                            <div class="text-sm text-earth-700 whitespace-pre-wrap leading-relaxed">
-                                ${noteContentHTML}
+                            <h3 class="text-lg font-bold text-earth-900 mb-1">${activeNote.title}</h3>
+                            <div class="flex gap-2 items-center">
+                                <span class="text-[10px] font-semibold text-earth-600 bg-earth-200 px-2.5 py-1 rounded-full capitalize">${activeNote.category}</span>
+                                <span class="text-xs text-earth-500">${activeNote.date}</span>
                             </div>
                         </div>
-                        
-                        <div class="flex justify-end gap-3 pt-4 border-t border-earth-200">
-                            <button onclick="deleteNote('${noteId}')" class="px-4 py-2 border border-red-200 text-red-600 hover:bg-red-50 rounded-xl text-xs font-semibold transition-all flex items-center gap-1.5">
-                                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                                </svg>
-                                Delete note
-                            </button>
-                            <button onclick="editNote()" class="px-5 py-2 bg-earth-500 hover:bg-earth-600 text-white rounded-xl text-xs font-semibold transition-all flex items-center gap-1.5 shadow-sm">
-                                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
-                                </svg>
+                        <div class="flex-grow overflow-y-auto">
+                            <p class="note-display text-sm text-earth-800 leading-relaxed">${activeNote.content}</p>
+                        </div>
+                        <div class="flex justify-end gap-3 pt-4 border-t border-earth-200 mt-auto">
+                            <button onclick="editNote()" class="px-4 py-2 bg-earth-500 hover:bg-earth-600 text-white rounded-xl text-xs font-semibold transition-all">
                                 Edit note
                             </button>
                         </div>
@@ -1046,258 +1035,69 @@
             renderNotesView();
         }
 
-        function createNewNote() {
-            activeNoteId = null;
-            isEditingNote = true;
-            renderNotesView();
-        }
-
         function editNote() {
             isEditingNote = true;
-            renderNotesView();
+            renderActivePane();
         }
 
         function cancelNoteEdit() {
             isEditingNote = false;
-            if (!activeNoteId && notesList.length > 0) {
-                activeNoteId = notesList[0].id;
-            }
-            renderNotesView();
+            renderActivePane();
         }
 
         function saveNote() {
-            const title = document.getElementById('edit-note-title').value.trim() || 'Untitled Note';
-            const category = document.getElementById('edit-note-category').value;
-            const content = document.getElementById('edit-note-content').value.trim();
-            const dateStr = new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
-
-            if (activeNoteId) {
-                const noteIndex = notesList.findIndex(n => n.id === activeNoteId);
-                if (noteIndex !== -1) {
-                    notesList[noteIndex].title = title;
-                    notesList[noteIndex].category = category;
-                    notesList[noteIndex].content = content;
-                    notesList[noteIndex].date = dateStr;
-                }
-            } else {
-                const newId = 'note-' + Date.now();
-                const newNote = {
-                    id: newId,
-                    title: title,
-                    category: category,
-                    content: content,
-                    date: dateStr
-                };
-                notesList.unshift(newNote);
-                activeNoteId = newId;
-            }
-
-            localStorage.setItem('hajjMultiNotes', JSON.stringify(notesList));
-            isEditingNote = false;
-            renderNotesView();
-        }
-
-        function deleteNote(id) {
-            notesList = notesList.filter(n => n.id !== id);
-            localStorage.setItem('hajjMultiNotes', JSON.stringify(notesList));
+            if (!activeNoteId) return;
             
-            if (notesList.length > 0) {
-                activeNoteId = notesList[0].id;
-            } else {
-                activeNoteId = null;
+            const titleEl = document.getElementById('edit-note-title');
+            const categoryEl = document.getElementById('edit-note-category');
+            const contentEl = document.getElementById('edit-note-content');
+
+            if (!titleEl || !contentEl) return;
+
+            const noteIndex = notesList.findIndex(n => n.id === activeNoteId);
+            if (noteIndex !== -1) {
+                notesList[noteIndex].title = titleEl.value;
+                notesList[noteIndex].category = categoryEl.value;
+                notesList[noteIndex].content = contentEl.value;
+                notesList[noteIndex].date = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
             }
+
+            localStorage.setItem('hajjMultiNotes', JSON.stringify(notesList));
             isEditingNote = false;
             renderNotesView();
         }
 
-        let deferredPrompt;
-        window.addEventListener('beforeinstallprompt', (e) => {
-            // Prevent Chrome 67 and earlier from automatically showing the prompt
-            e.preventDefault();
-            // Stash the event so it can be triggered later.
-            deferredPrompt = e;
-            // Update UI to notify user they can install PWA
-            const installBanner = document.getElementById('pwa-install-banner');
-            if (installBanner) installBanner.classList.remove('hidden');
-        });
+        function createNewNote() {
+            const newNote = {
+                id: `note-${Date.now()}`,
+                title: 'New Note',
+                category: 'General',
+                content: '',
+                date: new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })
+            };
 
-        function triggerPWAInstall() {
-            if (!deferredPrompt) return;
-            // Show the install prompt
-            deferredPrompt.prompt();
-            // Wait for the user to respond to the prompt
-            deferredPrompt.userChoice.then((choiceResult) => {
-                if (choiceResult.outcome === 'accepted') {
-                    console.log('User accepted the install prompt');
-                } else {
-                    console.log('User dismissed the install prompt');
-                }
-                deferredPrompt = null;
-                dismissInstallBanner();
-            });
+            notesList.push(newNote);
+            activeNoteId = newNote.id;
+            isEditingNote = true;
+            renderNotesView();
         }
-
-        function dismissInstallBanner() {
-            const installBanner = document.getElementById('pwa-install-banner');
-            if (installBanner) installBanner.classList.add('hidden');
-        }
-
-        // Detect iOS and display instructions manually
-        function detectiOS() {
-            const isApple = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
-            const isStandalone = ('standalone' in window.navigator) && (window.navigator.standalone);
-            if (isApple && !isStandalone) {
-                const iosInstructions = document.getElementById('pwa-ios-instructions');
-                if (iosInstructions) iosInstructions.classList.remove('hidden');
-            }
-        }
-
-        function dismissiOSInstructions() {
-            const iosInstructions = document.getElementById('pwa-ios-instructions');
-            if (iosInstructions) iosInstructions.classList.add('hidden');
-        }
-
-        function updateNetworkStatus() {
-            const statusBar = document.getElementById('pwa-status-bar');
-            const statusText = document.getElementById('pwa-status-text');
-            if (navigator.onLine) {
-                statusBar.className = "bg-islamic-sage text-white text-center py-1.5 px-4 text-xs font-semibold flex items-center justify-center gap-2 transition-all duration-300";
-                statusText.innerText = "Online (All synced)";
-                statusBar.querySelector('span').className = "w-2 h-2 rounded-full bg-white animate-pulse";
-            } else {
-                statusBar.className = "bg-islamic-clay text-white text-center py-1.5 px-4 text-xs font-semibold flex items-center justify-center gap-2 transition-all duration-300";
-                statusText.innerText = "Offline mode (Timeline & notes fully active)";
-                statusBar.querySelector('span').className = "w-2 h-2 rounded-full bg-white";
-            }
-        }
-
-        window.addEventListener('online', updateNetworkStatus);
-        window.addEventListener('offline', updateNetworkStatus);
-
-        // Live Countdown calculation logic
-        function updateCountdown() {
-            const startHajjDate = new Date("May 25, 2026 09:00:00").getTime();
-            const now = new Date().getTime();
-            const difference = startHajjDate - now;
-
-            if (difference < 0) {
-                const endHajjDate = new Date("June 5, 2026 13:00:00").getTime();
-                if (now < endHajjDate) {
-                    document.getElementById('countdown').innerText = "Hajj is active!";
-                    document.getElementById('countdown').className = "text-lg font-bold text-islamic-sage animate-pulse";
-                    document.getElementById('active-day-stat').innerText = "In progress";
-                } else {
-                    document.getElementById('countdown').innerText = "Journey concluded";
-                    document.getElementById('active-day-stat').innerText = "Completed";
-                }
-                return;
-            }
-
-            const daysLeft = Math.floor(difference / (1000 * 60 * 60 * 24));
-            const hoursLeft = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minsLeft = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
-
-            document.getElementById('countdown').innerText = `${daysLeft}d ${hoursLeft}h ${minsLeft}m`;
-        }
-
-        // Back to top scroll handler
-        window.onscroll = function() {
-            const btn = document.getElementById('back-to-top');
-            if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
-                btn.classList.remove('opacity-0', 'translate-y-24');
-                btn.classList.add('opacity-100', 'translate-y-0');
-            } else {
-                btn.classList.remove('opacity-100', 'translate-y-0');
-                btn.classList.add('opacity-0', 'translate-y-24');
-            }
-        };
 
         function scrollToTop() {
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        function registerDynamicManifest() {
-            const manifestObj = {
-                "name": "Hajj 2026 Journey Planner",
-                "short_name": "Hajj 2026",
-                "description": "Your offline interactive timeline, checklist, and travel companion for Hajj 2026.",
-                "start_url": ".",
-                "display": "standalone",
-                "background_color": "#fdfcf9",
-                "theme_color": "#a67c1e",
-                "icons": [
-                    {
-                        "src": "https://placehold.co/192x192/a67c1e/ffffff?text=Hajj+2026",
-                        "sizes": "192x192",
-                        "type": "image/png"
-                    },
-                    {
-                        "src": "https://placehold.co/512x512/a67c1e/ffffff?text=Hajj+Gold+2026",
-                        "sizes": "512x512",
-                        "type": "image/png"
-                    }
-                ]
-            };
-            const manifestString = JSON.stringify(manifestObj);
-            const manifestBlob = new Blob([manifestString], {type: 'application/json'});
-            const manifestURL = URL.createObjectURL(manifestBlob);
-            const manifestLink = document.createElement('link');
-            manifestLink.rel = 'manifest';
-            manifestLink.href = manifestURL;
-            document.head.appendChild(manifestLink);
-        }
-
-        function registerDynamicServiceWorker() {
-            if ('serviceWorker' in navigator) {
-                const swContent = `
-                    const CACHE_NAME = 'hajj-gold-cache-v1';
-                    const urlsToCache = [
-                        './',
-                        './hajj_journey_planner.html',
-                        'https://cdn.tailwindcss.com',
-                        'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap'
-                    ];
-
-                    self.addEventListener('install', event => {
-                        event.waitUntil(
-                            caches.open(CACHE_NAME).then(cache => {
-                                return cache.addAll(urlsToCache).catch(err => {
-                                    console.warn('Caching failed during SW install:', err);
-                                });
-                            })
-                        );
-                    });
-
-                    self.addEventListener('fetch', event => {
-                        event.respondWith(
-                            caches.match(event.request).then(response => {
-                                return response || fetch(event.request).catch(() => {
-                                    // Fail gracefully when offline without breaking
-                                });
-                            })
-                        );
-                    });
-                `;
-                const swBlob = new Blob([swContent], {type: 'application/javascript'});
-                const swURL = URL.createObjectURL(swBlob);
-                navigator.serviceWorker.register(swURL).then(reg => {
-                    console.log('Dynamic PWA Service Worker registered successfully', reg);
-                }).catch(err => {
-                    console.warn('Dynamic PWA Service Worker registration failed', err);
-                });
+        // Show back-to-top button
+        window.addEventListener('scroll', () => {
+            const btn = document.getElementById('back-to-top');
+            if (window.scrollY > 300) {
+                btn.classList.remove('translate-y-24', 'opacity-0');
+            } else {
+                btn.classList.add('translate-y-24', 'opacity-0');
             }
-        }
+        });
 
-        // Initial launch configuration on window render
-        window.onload = function() {
-            registerDynamicManifest();
-            registerDynamicServiceWorker();
-            renderTimeline();
-            updateCountdown();
-            updateNetworkStatus();
-            detectiOS();
-            setInterval(updateCountdown, 60000);
-        }
+        // Initialize on page load
+        renderTimeline();
     </script>
 </body>
 </html>
