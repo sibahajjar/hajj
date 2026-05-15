@@ -1,2 +1,1088 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Hajj Gold 2026 - Interactive Journey Companion</title>
+
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Hajj 2026">
+    <meta name="theme-color" content="#fdfcf9">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        earth: {
+                            50: '#fdfcf9',   // warm sand canvas background
+                            100: '#f6f1e5',  // elegant cream card surface
+                            200: '#eddcc8',  // desert sand borders
+                            300: '#dfc2a5',  // golden tan
+                            400: '#c59b27',  // warm gold accent
+                            500: '#a67c1e',  // rich burnished gold
+                            600: '#8c5e14',  // soft brown
+                            700: '#5c462b',  // warm chocolate text
+                            800: '#42321e',  // deep clay
+                            900: '#2c2113',  // earth black
+                        },
+                        islamic: {
+                            olive: '#556b2f',
+                            sage: '#7d956d',
+                            clay: '#c27d38',
+                            ochre: '#dda15e',
+                            sand: '#fefae0',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #fdfcf9;
+            color: #42321e;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .serif-title {
+            font-family: 'Playfair Display', serif;
+        }
+        /* Custom scrollbar matching earthy tones */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f6f1e5;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #dfc2a5;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #a67c1e;
+        }
+        /* Preserve formatting for note content display */
+        .note-display {
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+        }
+    </style>
+</head>
+<body class="text-earth-800 min-h-screen flex flex-col selection:bg-earth-300 selection:text-earth-900 pb-16 md:pb-0">
+
+    <div id="pwa-status-bar" class="bg-islamic-sage text-white text-center py-1.5 px-4 text-xs font-semibold flex items-center justify-center gap-2 transition-all duration-300">
+        <span class="w-2 h-2 rounded-full bg-white animate-pulse"></span>
+        <span id="pwa-status-text">Checking connection status...</span>
+    </div>
+
+    <!-- Top Decorative Border -->
+    <div class="h-2.5 bg-gradient-to-r from-earth-500 via-islamic-sage to-islamic-clay w-full"></div>
+
+    <!-- Header -->
+    <header class="relative bg-earth-100 border-b border-earth-200 py-10 px-4 overflow-hidden">
+        <!-- Spiritual Geometric Background Accent -->
+        <div class="absolute inset-0 opacity-[0.03] pointer-events-none flex items-center justify-center">
+            <svg class="w-96 h-96 text-earth-900" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 2L14.85 8.4L21.3 9.4L16.65 14L17.75 20.4L12 17.4L6.25 20.4L7.35 14L2.7 9.4L9.15 8.4L12 2Z" />
+            </svg>
+        </div>
+
+        <div class="max-w-6xl mx-auto text-center relative z-10">
+            <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-islamic-sand border border-earth-200 text-earth-700 text-xs font-semibold uppercase tracking-wider mb-4">
+                <svg class="w-4 h-4 text-earth-500" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 21l9-4V8.5l-9 4V21z" fill="currentColor"/>
+                    <path d="M3 17l9 4v-8.5L3 8.5V17z" fill="currentColor" opacity="0.8"/>
+                    <path d="M12 12.5l9-4L12 4.5l-9 4 9 4z" fill="currentColor" opacity="0.9"/>
+                    <path d="M12 15l9-4v-1l-9 4V15z" fill="#a67c1e"/>
+                    <path d="M3 11l9 4v-1L3 9.5V11z" fill="#8c5e14"/>
+                </svg>
+                Hajj Gold short Hajj Tagesablauf
+            </div>
+            
+            <h1 class="serif-title text-4xl md:text-5xl lg:text-6xl font-bold text-earth-900 tracking-wide">
+                Hajj 2026 Journey Companion
+            </h1>
+            
+            <p class="text-earth-600 max-w-2xl mx-auto mt-4 mb-10 text-sm md:text-base font-light font-sans">
+                Your interactive offline timeline, checklist, and travel companion.
+            </p>
+
+            <!-- Stats Dashboard / Quick Analytics -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto">
+                <!-- Countdown -->
+                <div class="bg-white border border-earth-200 p-4 rounded-2xl flex flex-col items-center justify-center shadow-sm">
+                    <span class="text-xs text-earth-500 uppercase tracking-widest font-semibold mb-1">Hajj countdown</span>
+                    <span id="countdown" class="text-lg font-bold text-earth-500">Loading...</span>
+                </div>
+                <!-- Journey Days -->
+                <div class="bg-white border border-earth-200 p-4 rounded-2xl flex flex-col items-center justify-center shadow-sm">
+                    <span class="text-xs text-earth-500 uppercase tracking-widest font-semibold mb-1">Total duration</span>
+                    <span class="text-lg font-bold text-earth-700">16 Full Days</span>
+                </div>
+                <!-- Interactive Checklist Progress -->
+                <div class="bg-white border border-earth-200 p-4 rounded-2xl flex flex-col items-center justify-center shadow-sm">
+                    <span class="text-xs text-earth-500 uppercase tracking-widest font-semibold mb-1">Tasks completed</span>
+                    <span id="progress-text" class="text-lg font-bold text-islamic-sage">0%</span>
+                </div>
+                <!-- Current Location Marker -->
+                <div class="bg-white border border-earth-200 p-4 rounded-2xl flex flex-col items-center justify-center shadow-sm">
+                    <span class="text-xs text-earth-500 uppercase tracking-widest font-semibold mb-1">Current active day</span>
+                    <span id="active-day-stat" class="text-lg font-bold text-islamic-clay">Pre-travel</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div id="pwa-install-banner" class="hidden bg-earth-100 border-b border-earth-200 py-3 px-4">
+        <div class="max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3 text-sm">
+            <div class="flex items-center gap-2 text-earth-700">
+                <svg class="w-5 h-5 text-earth-500 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                </svg>
+                <span>Add Hajj 2026 to your home screen for quick, reliable offline access.</span>
+            </div>
+            <div class="flex items-center gap-2 shrink-0">
+                <button onclick="dismissInstallBanner()" class="px-3 py-1.5 text-xs font-semibold text-earth-600 hover:text-earth-900 transition">Maybe later</button>
+                <button onclick="triggerPWAInstall()" class="px-4 py-1.5 text-xs font-bold bg-earth-500 hover:bg-earth-600 text-white rounded-lg shadow-sm transition">Install app</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="pwa-ios-instructions" class="hidden bg-earth-50 border-b border-earth-200 py-4 px-4 text-center text-xs text-earth-700">
+        <div class="max-w-xl mx-auto flex flex-col items-center gap-2">
+            <p class="font-semibold">Installing on iPhone/iPad:</p>
+            <p>Tap the Share button <span class="bg-earth-200 px-1.5 py-0.5 rounded text-[10px]">⎙</span> in your Safari browser and select <strong class="text-earth-900">Add to Home Screen</strong>.</p>
+            <button onclick="dismissiOSInstructions()" class="text-[10px] text-earth-500 underline hover:text-earth-700">Dismiss instruction</button>
+        </div>
+    </div>
+
+    <!-- Tab Navigation -->
+    <div class="flex justify-center border-b border-earth-200 bg-earth-50 sticky top-0 z-40 shadow-sm">
+        <div class="max-w-6xl w-full flex justify-center gap-2 md:gap-6 px-4">
+            <button id="tab-timeline" onclick="switchTab('timeline')" class="px-6 py-4 text-sm font-semibold border-b-2 border-earth-500 text-earth-900 transition-all focus:outline-none flex items-center gap-2">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                </svg>
+                Journey timeline
+            </button>
+            <button id="tab-notes" onclick="switchTab('notes')" class="px-6 py-4 text-sm font-semibold border-b-2 border-transparent text-earth-500 hover:text-earth-900 transition-all focus:outline-none flex items-center gap-2">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                </svg>
+                My travel notes
+            </button>
+        </div>
+    </div>
+
+    <main class="flex-grow max-w-6xl w-full mx-auto p-4 md:p-8 space-y-8">
+        
+        <!-- ==================== TIMELINE TAB VIEW ==================== -->
+        <div id="view-timeline" class="space-y-8">
+            
+            <!-- Interactive Visual Path Diagram (pt-8 added to prevent cropping absolute tags) -->
+            <section class="bg-white border border-earth-200 p-6 rounded-3xl shadow-sm">
+                <h2 class="serif-title text-xl font-bold text-earth-800 mb-6 flex items-center gap-2">
+                    <svg class="w-5 h-5 text-earth-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V7" />
+                    </svg>
+                    Interactive journey route map
+                </h2>
+                <div class="relative overflow-x-auto pb-4 pt-8">
+                    <div class="flex items-center space-x-4 min-w-[900px] justify-between px-4">
+                        
+                        <!-- Phase 1 Card -->
+                        <div class="flex-1 bg-earth-50 border-2 border-earth-200/80 p-4 rounded-2xl text-center relative overflow-visible group hover:border-earth-400 transition-all duration-300">
+                            <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-earth-600 text-white text-[10px] px-3 py-1 rounded-full font-bold uppercase tracking-wider shadow-sm">
+                                Phase 1
+                            </div>
+                            <div class="flex justify-center mb-2 mt-2">
+                                <svg class="w-8 h-8 text-earth-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M12 22V11m0 0a3 3 0 00-3-3H6.5a3 3 0 00-3 3v10h17V11a3 3 0 00-3-3H15a3 3 0 00-3 3zm-6-3V7a1 1 0 011-1h1a1 1 0 011 1v11m6-3V7a1 1 0 011-1h1a1 1 0 011 1v11" />
+                                    <path d="M12 2s1.5 2 1.5 3h-3S12 2 12 2z" fill="currentColor"/>
+                                </svg>
+                            </div>
+                            <h3 class="font-bold text-sm text-earth-800">Madinah Al-Munawwarah</h3>
+                            <p class="text-xs text-earth-500 mt-1">May 21 – May 23</p>
+                            <span class="text-[10px] text-earth-600 bg-earth-100 px-2.5 py-1 rounded-full mt-2 inline-block font-medium">Preparation & Rawdah</span>
+                        </div>
+
+                        <div class="text-earth-400 flex items-center justify-center">
+                            <svg class="w-5 h-5 text-earth-400 animate-pulse" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24">
+                                <polyline points="9 18 15 12 9 6"></polyline>
+                            </svg>
+                        </div>
+
+                        <!-- Phase 2 Card -->
+                        <div class="flex-1 bg-earth-50 border-2 border-earth-200/80 p-4 rounded-2xl text-center relative overflow-visible group hover:border-earth-400 transition-all duration-300">
+                            <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-islamic-clay text-white text-[10px] px-3 py-1 rounded-full font-bold uppercase tracking-wider shadow-sm">
+                                Phase 2
+                            </div>
+                            <div class="flex justify-center mb-2 mt-2">
+                                <svg class="w-8 h-8 text-islamic-clay" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V7" />
+                                </svg>
+                            </div>
+                            <h3 class="font-bold text-sm text-earth-800">Miqat & 1st Umrah</h3>
+                            <p class="text-xs text-earth-500 mt-1">May 24 (Day 4)</p>
+                            <span class="text-[10px] text-islamic-clay bg-earth-100 px-2.5 py-1 rounded-full mt-2 inline-block font-medium">Madinah to Makkah</span>
+                        </div>
+
+                        <div class="text-earth-400 flex items-center justify-center">
+                            <svg class="w-5 h-5 text-earth-400 animate-pulse" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24">
+                                <polyline points="9 18 15 12 9 6"></polyline>
+                            </svg>
+                        </div>
+
+                        <!-- Phase 3 Card -->
+                        <div class="flex-1 bg-earth-50 border-2 border-earth-200/80 p-4 rounded-2xl text-center relative overflow-visible group hover:border-earth-400 transition-all duration-300">
+                            <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-earth-500 text-white text-[10px] px-3 py-1 rounded-full font-bold uppercase tracking-wider shadow-sm">
+                                Phase 3
+                            </div>
+                            <div class="flex justify-center mb-2 mt-2">
+                                <svg class="w-8 h-8 text-earth-500" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M12 21l9-4V8.5l-9 4V21z" fill="currentColor"/>
+                                    <path d="M3 17l9 4v-8.5L3 8.5V17z" fill="currentColor" opacity="0.8"/>
+                                    <path d="M12 12.5l9-4L12 4.5l-9 4 9 4z" fill="currentColor" opacity="0.9"/>
+                                    <path d="M12 15l9-4v-1l-9 4V15z" fill="#f59e0b"/>
+                                    <path d="M3 11l9 4v-1L3 9.5V11z" fill="#d97706"/>
+                                </svg>
+                            </div>
+                            <h3 class="font-bold text-sm text-earth-800">Hajj sacred days</h3>
+                            <p class="text-xs text-earth-500 mt-1">May 25 – May 29</p>
+                            <span class="text-[10px] text-earth-600 bg-earth-100 px-2.5 py-1 rounded-full mt-2 inline-block font-medium">Mina, Arafah, Muzdalifah</span>
+                        </div>
+
+                        <div class="text-earth-400 flex items-center justify-center">
+                            <svg class="w-5 h-5 text-earth-400 animate-pulse" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24">
+                                <polyline points="9 18 15 12 9 6"></polyline>
+                            </svg>
+                        </div>
+
+                        <!-- Phase 4 Card -->
+                        <div class="flex-1 bg-earth-50 border-2 border-earth-200/80 p-4 rounded-2xl text-center relative overflow-visible group hover:border-earth-400 transition-all duration-300">
+                            <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-islamic-sage text-white text-[10px] px-3 py-1 rounded-full font-bold uppercase tracking-wider shadow-sm">
+                                Phase 4
+                            </div>
+                            <div class="flex justify-center mb-2 mt-2">
+                                <svg class="w-8 h-8 text-islamic-sage" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16M19 21h2M19 21h-5M3 21h2m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1M9 15h1m4 0h1M11 21v-4a1 1 0 011-1h2a1 1 0 011 1v4" />
+                                </svg>
+                            </div>
+                            <h3 class="font-bold text-sm text-earth-800">Post-Hajj Makkah</h3>
+                            <p class="text-xs text-earth-500 mt-1">May 30 – June 05</p>
+                            <span class="text-[10px] text-islamic-sage bg-earth-100 px-2.5 py-1 rounded-full mt-2 inline-block font-medium">Sheraton & 2nd Umrah</span>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+
+            <!-- Search & Advanced Filter Section -->
+            <section class="bg-earth-100 border border-earth-200 p-6 rounded-3xl flex flex-col lg:flex-row gap-4 justify-between items-center">
+                
+                <!-- Phase Navigation Tabs -->
+                <div class="flex flex-wrap gap-2 w-full lg:w-auto">
+                    <button onclick="filterPhase('all')" id="btn-all" class="phase-btn active px-4 py-2.5 rounded-xl text-xs md:text-sm font-semibold transition-all duration-200 bg-earth-500 text-white shadow-sm">
+                        All days (16)
+                    </button>
+                    <button onclick="filterPhase('madinah')" id="btn-madinah" class="phase-btn px-4 py-2.5 rounded-xl text-xs md:text-sm font-semibold transition-all duration-200 bg-white border border-earth-200 hover:border-earth-400 text-earth-700">
+                        Phase 1: Madinah
+                    </button>
+                    <button onclick="filterPhase('transition')" id="btn-transition" class="phase-btn px-4 py-2.5 rounded-xl text-xs md:text-sm font-semibold transition-all duration-200 bg-white border border-earth-200 hover:border-earth-400 text-earth-700">
+                        Phase 2: First Umrah
+                    </button>
+                    <button onclick="filterPhase('hajj')" id="btn-hajj" class="phase-btn px-4 py-2.5 rounded-xl text-xs md:text-sm font-semibold transition-all duration-200 bg-white border border-earth-200 hover:border-earth-400 text-earth-700">
+                        Phase 3: Hajj days
+                    </button>
+                    <button onclick="filterPhase('post')" id="btn-post" class="phase-btn px-4 py-2.5 rounded-xl text-xs md:text-sm font-semibold transition-all duration-200 bg-white border border-earth-200 hover:border-earth-400 text-earth-700">
+                        Phase 4: Post-Hajj
+                    </button>
+                </div>
+
+                <div class="flex flex-col sm:flex-row gap-3 w-full lg:w-auto items-center">
+                    <!-- Dynamic Search input -->
+                    <div class="relative w-full sm:w-64">
+                        <input type="text" id="itinerary-search" oninput="searchItinerary()" placeholder="Search activities..." 
+                               class="w-full bg-white border border-earth-200 focus:border-earth-500 rounded-xl px-4 py-2.5 pl-10 text-sm text-earth-800 focus:outline-none transition-all duration-200">
+                        <!-- Search SVG Icon -->
+                        <svg class="w-4 h-4 text-earth-400 absolute left-3.5 top-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                        </svg>
+                    </div>
+                    
+                    <!-- Global Companion Options -->
+                    <button onclick="resetChecklists()" class="w-full sm:w-auto bg-white border border-earth-200 hover:border-earth-400 hover:text-earth-900 px-4 py-2.5 rounded-xl text-xs font-semibold transition-all flex items-center gap-2">
+                        <!-- Reset / Arrow Rotation SVG -->
+                        <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21.5 2v6h-6M21.34 15.57a10 10 0 11-.57-8.38l5.67-5.67"/>
+                        </svg>
+                        Reset progress
+                    </button>
+                </div>
+            </section>
+
+            <!-- Timeline Section Wrapper -->
+            <section class="relative space-y-6">
+                <!-- Middle connecting bar for desktop layouts -->
+                <div class="absolute left-6 md:left-8 top-8 bottom-8 w-1 bg-gradient-to-b from-earth-300 via-earth-400 to-islamic-sage z-0"></div>
+
+                <!-- Interactive Timeline Item Cards -->
+                <div id="timeline-container" class="space-y-6 relative z-10 font-sans">
+                    <!-- Data cards are generated programmatically using JS below -->
+                </div>
+            </section>
+        </div>
+
+        <!-- ==================== MY TRAVEL NOTES TAB VIEW ==================== -->
+        <div id="view-notes" class="hidden space-y-6">
+            <div class="bg-white border border-earth-200 p-6 rounded-3xl shadow-sm">
+                <h2 class="serif-title text-2xl font-bold text-earth-900 mb-2">My travel notes</h2>
+                <p class="text-earth-600 text-sm mb-6">Create, edit, and keep track of multiple personal notes, hotel assignments, flight details, or sacred Du'a lists during your Hajj journey.</p>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <!-- Notes Sidebar (List of Notes) -->
+                    <div class="md:col-span-1 flex flex-col gap-4">
+                        <button onclick="createNewNote()" class="w-full bg-earth-500 hover:bg-earth-600 text-white py-3 px-4 rounded-xl text-sm font-semibold shadow-sm transition-all flex items-center gap-2">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />
+                            </svg>
+                            Add new note
+                        </button>
+                        
+                        <!-- Search Notes input -->
+                        <div class="relative">
+                            <input type="text" id="notes-search" oninput="renderNotesList()" placeholder="Search notes..." 
+                                   class="w-full bg-earth-50 border border-earth-200 focus:border-earth-500 rounded-xl px-4 py-2.5 pl-10 text-xs text-earth-800 focus:outline-none transition-all">
+                            <svg class="w-4 h-4 text-earth-400 absolute left-3.5 top-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="11" cy="11" r="8"></circle>
+                                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                            </svg>
+                        </div>
+                        
+                        <!-- Notes List Container -->
+                        <div id="notes-list" class="flex flex-col gap-3 max-h-[450px] overflow-y-auto pr-1">
+                            <!-- Populated dynamically -->
+                        </div>
+                    </div>
+                    
+                    <!-- Active Note Editor/Viewer Pane -->
+                    <div class="md:col-span-2 bg-earth-50 border border-earth-200 p-6 rounded-2xl min-h-[300px] flex flex-col justify-between">
+                        <div id="note-pane-content" class="h-full flex flex-col">
+                            <!-- Dynamic Content (View, Edit, or Empty state) -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Disclaimer / Info Footer -->
+    <footer class="bg-earth-100 border-t border-earth-200 py-10 px-4 mt-12 text-center text-sm text-earth-600 relative z-10 font-sans">
+        <div class="max-w-4xl mx-auto space-y-3">
+            <p class="text-earth-700">
+                <!-- Triangle Warning SVG -->
+                <svg class="w-5 h-5 text-earth-500 inline-block mr-1 align-middle" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/>
+                    <line x1="12" y1="9" x2="12" y2="13"/>
+                    <line x1="12" y1="17" x2="12.01" y2="17"/>
+                </svg>
+                <strong>Planning caution:</strong> This program may be updated dynamically due to local atmospheric conditions, Hajj ministry updates, transportation challenges, or sudden emergencies.
+            </p>
+            <p class="text-xs text-earth-500">
+                Design & Engineering optimized for Hajj 1447H / 2026. Data extracted from <span class="font-semibold italic text-earth-600">"Hac Gold short Hajj Tagesablauf.pdf"</span> verbatim.
+            </p>
+        </div>
+    </footer>
+
+    <!-- Back to top trigger button -->
+    <button onclick="scrollToTop()" id="back-to-top" class="fixed bottom-6 right-6 p-4 rounded-full bg-earth-500 hover:bg-earth-400 text-white shadow-lg z-50 transform translate-y-24 opacity-0 transition-all duration-300">
+        <!-- Chevron Up SVG -->
+        <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="18 15 12 9 6 15"></polyline>
+        </svg>
+    </button>
+
+    <script>
+        const journeyData = [
+            {
+                day: 1,
+                date: "May 21, 2026",
+                weekday: "Thursday",
+                phase: "madinah",
+                badgeClass: "bg-earth-200 text-earth-800",
+                badgeText: "Phase 1: Madinah",
+                items: [
+                    { time: "03:00 - 07:00", desc: "Tahajjud worship, Azkar, Fajr Prayer inside Masjid Nabawi, & Salatu Salam upon Prophet Muhammad SAV.", mode: "walk" },
+                    { time: "15:00 - 18:00", desc: "Jannat al-Baqi Ziyarah (MEN ONLY), and visiting nearby mosques (Abu Bakar Masjid, Hz. Ali Masjid, Ghamamah Masjid, Al Bugli).", mode: "walk" },
+                    { time: "19:00 - 23:00", desc: "Spiritual Worship inside Rawdah Al-Mutahharah (Prophet's Tomb). INDIVIDUAL FOR SISTERS.", mode: "walk" }
+                ]
+            },
+            {
+                day: 2,
+                date: "May 22, 2026",
+                weekday: "Friday",
+                phase: "madinah",
+                badgeClass: "bg-earth-200 text-earth-800",
+                badgeText: "Phase 1: Madinah",
+                items: [
+                    { time: "01:00 - 03:00", desc: "Spiritual Worship inside Rawdah Al-Mutahharah (Prophet's Tomb). INDIVIDUAL FOR BROTHERS.", mode: "walk" },
+                    { time: "03:00 - 07:00", desc: "Praying Tahajjud, Azkar, Fajr inside Masjid Nabawi & Salatu Salam.", mode: "walk" },
+                    { time: "08:00 - 13:00", desc: "Perform the magnificent Jumuah (Friday) Prayer inside the sacred Masjid Nabawi.", mode: "walk" }
+                ]
+            },
+            {
+                day: 3,
+                date: "May 23, 2026",
+                weekday: "Saturday",
+                phase: "madinah",
+                badgeClass: "bg-earth-200 text-earth-800",
+                badgeText: "Phase 1: Madinah",
+                items: [
+                    { time: "03:00 - 07:00", desc: "Worship Tahajjud, Azkar, Fajr at Masjid Nabawi & Salatu Salam.", mode: "walk" },
+                    { time: "08:00 - 12:00", desc: "Group Ziyarah by Bus: Visiting Mount Uhud, Qiblatayn Masjid, and Quba Masjid.", mode: "bus" },
+                    { time: "12:00 - 18:00", desc: "Visit Date Garden (Group lunch with Nasi Mandhi).", mode: "bus" }
+                ]
+            },
+            {
+                day: 4,
+                date: "May 24, 2026",
+                weekday: "Sunday",
+                phase: "transition",
+                badgeClass: "bg-islamic-sand text-earth-800",
+                badgeText: "Phase 2: First Umrah",
+                items: [
+                    { time: "03:00 - 07:00", desc: "Praying Tahajjud, Azkar, Fajr inside Masjid Nabawi & Salatu Salam.", mode: "walk" },
+                    { time: "Afternoon", desc: "Transition from Madinah to Makkah. Donning the Ihram, making Niyah (intent) for First Umrah, and bus transfer to Mina (Muasim). Perform First Umrah.", mode: "bus" }
+                ]
+            },
+            {
+                day: 5,
+                date: "May 25, 2026",
+                weekday: "Monday",
+                phase: "hajj",
+                badgeClass: "bg-earth-200 text-earth-800",
+                badgeText: "Hajj day 1: Tarwiyah",
+                items: [
+                    { time: "09:00 - 12:00", desc: "Put on Ihram for Hajj and make Niyah. Complete transfer from Makkah Hotel to Mina (Majar Al-Kabsh) by bus.", mode: "bus" },
+                    { time: "12:00 - 23:00", desc: "Stay in Mina. Performing five core daily prayers in Mina tents.", mode: "stay" }
+                ]
+            },
+            {
+                day: 6,
+                date: "May 26, 2026",
+                weekday: "Tuesday",
+                phase: "hajj",
+                badgeClass: "bg-earth-200 text-earth-800",
+                badgeText: "Hajj day 2: Arafah",
+                items: [
+                    { time: "06:00 - 08:00", desc: "Arafat transfer: Transfer by group Train/Bus from Mina to the Arafat plains.", mode: "train" },
+                    { time: "12:00 - 18:00", desc: "Standing in Arafat (Wuquf) - combined prayers of Dhuhr & Asr (Jama' Taqdim) and profound Du'a.", mode: "walk" },
+                    { time: "18:00 - 23:00", desc: "Transfer post-sunset from Arafat to Muzdalifah.", mode: "train" },
+                    { time: "23:00 - 04:00", desc: "Staying night at Muzdalifah, performing combined Maghrib & Isha prayers (Jama' Ta'khir), and collecting 70 pebbles.", mode: "walk" }
+                ]
+            },
+            {
+                day: 7,
+                date: "May 27, 2026",
+                weekday: "Wednesday",
+                phase: "hajj",
+                badgeClass: "bg-earth-200 text-earth-800",
+                badgeText: "Hajj day 3: Eid day 1",
+                items: [
+                    { time: "04:00 - 07:00", desc: "Morning transition: Depart Muzdalifah to Jamaraat following Fajr prayer.", mode: "train" },
+                    { time: "07:00 - 08:00", desc: "Perform the FIRST Stoning (Jamarat al-Aqabah).", mode: "walk" },
+                    { time: "08:00 - 09:00", desc: "Return to Mina or Hotel. Perform animal sacrifice, then cut/shave hair (Halq/Taqsir) to release Ihram limitations.", mode: "walk" },
+                    { time: "09:00 - 14:00", desc: "Perform Tawaf Al-Ifadah & Sa'i at Masjid al-Haram.", mode: "bus" }
+                ]
+            },
+            {
+                day: 8,
+                date: "May 28, 2026",
+                weekday: "Thursday",
+                phase: "hajj",
+                badgeClass: "bg-earth-200 text-earth-800",
+                badgeText: "Hajj day 4: Eid day 2",
+                items: [
+                    { time: "15:00 - 19:00", desc: "Perform SECOND Stoning at Jamaraat (all 3 pillars: Sugra, Wusta, Aqabah).", mode: "walk" },
+                    { time: "19:00 - 20:00", desc: "Return back to the Mina tents.", mode: "walk" }
+                ]
+            },
+            {
+                day: 9,
+                date: "May 29, 2026",
+                weekday: "Friday",
+                phase: "hajj",
+                badgeClass: "bg-earth-200 text-earth-800",
+                badgeText: "Hajj day 5: Eid day 3",
+                items: [
+                    { time: "03:00 - 06:00", desc: "Depart Mina: Final transfer from Mina tents back to Makkah Hotel.", mode: "bus" },
+                    { time: "06:00 - 08:00", desc: "Complete Tawaf Al-Ifadah & Sa'i (if not previously completed on Day 7).", mode: "walk" },
+                    { time: "08:00 - 14:00", desc: "Perform Jumuah (Friday) Prayer at Masjid al-Haram.", mode: "walk" },
+                    { time: "14:00 - 18:00", desc: "Perform THIRD Stoning at Jamaraat before returning.", mode: "walk" }
+                ]
+            },
+            {
+                day: 10,
+                date: "May 30, 2026",
+                weekday: "Saturday",
+                phase: "post",
+                badgeClass: "bg-earth-200 text-earth-800",
+                badgeText: "Makkah ibadah",
+                items: [
+                    { time: "02:00 - 08:00", desc: "Pre-dawn spiritual routine: Praying Tahajjud, Adhkar, and Fajr at Masjid al-Haram.", mode: "walk" }
+                ]
+            },
+            {
+                day: 11,
+                date: "May 31, 2026",
+                weekday: "Sunday",
+                phase: "post",
+                badgeClass: "bg-earth-200 text-earth-800",
+                badgeText: "Makkah ibadah",
+                items: [
+                    { time: "02:00 - 08:00", desc: "Pre-dawn spiritual routine: Praying Tahajjud, Adhkar, and Fajr at Masjid al-Haram.", mode: "walk" }
+                ]
+            },
+            {
+                day: 12,
+                date: "June 1, 2026",
+                weekday: "Monday",
+                phase: "post",
+                badgeClass: "bg-earth-200 text-earth-800",
+                badgeText: "Hotel transfer",
+                items: [
+                    { time: "02:00 - 08:00", desc: "Pre-dawn spiritual routine: Praying Tahajjud, Adhkar, and Fajr at Masjid al-Haram.", mode: "walk" },
+                    { time: "08:00 - 12:00", desc: "Hotel Transition: Check out and transfer to the Sheraton Hotel Makkah.", mode: "bus" }
+                ]
+            },
+            {
+                day: 13,
+                date: "June 2, 2026",
+                weekday: "Tuesday",
+                phase: "post",
+                badgeClass: "bg-earth-200 text-earth-800",
+                badgeText: "Second Umrah",
+                items: [
+                    { time: "02:00 - 08:00", desc: "Pre-dawn spiritual routine: Praying Tahajjud, Adhkar, and Fajr at Masjid al-Haram.", mode: "walk" },
+                    { time: "Daytime", desc: "Group excursion to Miqat to perform the Second Umrah.", mode: "bus" }
+                ]
+            },
+            {
+                day: 14,
+                date: "June 3, 2026",
+                weekday: "Wednesday",
+                phase: "post",
+                badgeClass: "bg-earth-200 text-earth-800",
+                badgeText: "Local ziyarah",
+                items: [
+                    { time: "02:00 - 08:00", desc: "Pre-dawn spiritual routine: Praying Tahajjud, Adhkar, and Fajr at Masjid al-Haram.", mode: "walk" },
+                    { time: "15:00 - 18:00", desc: "Historical Walking Ziyarah: Birthplace of the Prophet SAW, Masjid Jin, Al-Mu'alla Cemetery, Masjid Shajarah, Masjid Rayaah.", mode: "walk" }
+                ]
+            },
+            {
+                day: 15,
+                date: "June 4, 2026",
+                weekday: "Thursday",
+                phase: "post",
+                badgeClass: "bg-earth-200 text-earth-800",
+                badgeText: "Major ziyarah",
+                items: [
+                    { time: "02:00 - 08:00", desc: "Pre-dawn spiritual routine: Praying Tahajjud, Adhkar, and Fajr at Masjid al-Haram.", mode: "walk" },
+                    { time: "08:00 - 12:00", desc: "Excursion Ziyarah by Bus: Mount Thawr, Mount Noor, and Mashair region.", mode: "bus" }
+                ]
+            },
+            {
+                day: 16,
+                date: "June 5, 2026",
+                weekday: "Friday",
+                phase: "post",
+                badgeClass: "bg-earth-200 text-earth-800",
+                badgeText: "Final Friday",
+                items: [
+                    { time: "02:00 - 08:00", desc: "Pre-dawn spiritual routine: Praying Tahajjud, Adhkar, and Fajr at Masjid al-Haram.", mode: "walk" },
+                    { time: "08:00 - 13:00", desc: "Perform final Jumuah Friday Prayer at Masjid al-Haram. Plan to enter 4 hours before the prayer time to secure a spot inside.", mode: "walk" }
+                ]
+            }
+        ];
+
+        let checklistStates = JSON.parse(localStorage.getItem('hajjChecklist')) || {};
+        let currentFilter = 'all';
+
         // Load multi-notes
         let notesList = JSON.parse(localStorage.getItem('hajjMultiNotes')) || [];
+        let activeNoteId = notesList.length > 0 ? notesList[0].id : null;
+        let isEditingNote = false;
+
+        // Render Cards dynamically inside timeline
+        function renderTimeline() {
+            const container = document.getElementById('timeline-container');
+            if (!container) return;
+            container.innerHTML = '';
+
+            journeyData.forEach(day => {
+                if (currentFilter !== 'all' && day.phase !== currentFilter) return;
+
+                const wrapper = document.createElement('div');
+                wrapper.className = "day-card bg-white border border-earth-200 hover:border-earth-400 rounded-3xl p-6 shadow-sm transition-all duration-300 relative group";
+                
+                let borderCol = "from-earth-300 to-earth-400";
+                if (day.phase === 'transition') borderCol = "from-islamic-sage to-earth-300";
+                if (day.phase === 'hajj') borderCol = "from-islamic-clay to-islamic-ochre";
+                if (day.phase === 'post') borderCol = "from-earth-400 to-earth-500";
+
+                let itemHTML = '';
+                day.items.forEach((item, index) => {
+                    const taskKey = `day-${day.day}-task-${index}`;
+                    const isChecked = checklistStates[taskKey] ? 'checked' : '';
+                    const strikeClass = checklistStates[taskKey] ? 'line-through text-earth-400' : 'text-earth-700';
+
+                    let modeBadge = '';
+                    if (item.mode === 'walk') {
+                        modeBadge = `
+                            <span class="px-2 py-1 rounded-md text-[10px] font-bold bg-earth-50 border border-earth-200 text-earth-600 uppercase tracking-widest inline-flex items-center gap-1">
+                                <svg class="w-3.5 h-3.5 text-earth-500" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                                    <circle cx="12" cy="4" r="1.5"/>
+                                    <path d="M12 7.5c-1 0-2 .5-2 1.5v3l-2.5 3.5 1.5 1 2.5-3.5v-2h2v4.5l2 3h1.5v-4.5l-2.5-3.5v-2h1c.8 0 1.5-.7 1.5-1.5S17.3 7.5 16.5 7.5h-4.5z"/>
+                                </svg>
+                                walk
+                            </span>`;
+                    } else if (item.mode === 'bus') {
+                        modeBadge = `
+                            <span class="px-2 py-1 rounded-md text-[10px] font-bold bg-earth-50 border border-earth-200 text-earth-600 uppercase tracking-widest inline-flex items-center gap-1">
+                                <svg class="w-3.5 h-3.5 text-earth-500" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                                    <rect x="4" y="4" width="16" height="12" rx="2" ry="2"/>
+                                    <rect x="6" y="6" width="12" height="4"/>
+                                    <circle cx="8" cy="18" r="2"/>
+                                    <circle cx="16" cy="18" r="2"/>
+                                </svg>
+                                bus
+                            </span>`;
+                    } else if (item.mode === 'train') {
+                        modeBadge = `
+                            <span class="px-2 py-1 rounded-md text-[10px] font-bold bg-earth-50 border border-earth-200 text-earth-600 uppercase tracking-widest inline-flex items-center gap-1">
+                                <svg class="w-3.5 h-3.5 text-earth-500" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                                    <rect x="4" y="3" width="16" height="14" rx="2" ry="2"/>
+                                    <path d="M4 11h16M12 3v8M8 17l-3 4M16 17l3 4"/>
+                                </svg>
+                                train
+                            </span>`;
+                    } else if (item.mode === 'stay' || item.mode === 'camp') {
+                        modeBadge = `
+                            <span class="px-2 py-1 rounded-md text-[10px] font-bold bg-earth-50 border border-earth-200 text-earth-600 uppercase tracking-widest inline-flex items-center gap-1">
+                                <svg class="w-3.5 h-3.5 text-earth-500" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                                    <path d="M12 2l9 16H3L12 2zm0 0v16"/>
+                                </svg>
+                                camp
+                            </span>`;
+                    }
+
+                    itemHTML += `
+                        <div class="flex flex-col md:flex-row md:items-center gap-3 p-3 rounded-2xl bg-earth-50/50 border border-earth-200/60 hover:border-earth-300 transition-all duration-200">
+                            <div class="flex items-center gap-3 min-w-[200px]">
+                                <input type="checkbox" id="${taskKey}" onchange="toggleTask('${taskKey}')" ${isChecked} class="w-5 h-5 rounded accent-earth-500 focus:ring-earth-500 focus:ring-opacity-50">
+                                <span class="text-xs font-bold bg-white text-earth-700 px-3 py-1.5 rounded-lg border border-earth-200 uppercase tracking-wider">${item.time}</span>
+                            </div>
+                            <div class="flex-grow">
+                                <p id="text-${taskKey}" class="text-sm ${strikeClass}">${item.desc}</p>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                ${modeBadge}
+                            </div>
+                        </div>
+                    `;
+                });
+
+                const noteKey = `note-day-${day.day}`;
+                const savedNote = localStorage.getItem(noteKey) || '';
+
+                wrapper.innerHTML = `
+                    <div class="absolute top-0 left-0 bottom-0 w-2 bg-gradient-to-b ${borderCol} rounded-l-3xl"></div>
+                    
+                    <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-earth-200 pb-4 mb-4">
+                        <div class="flex items-center gap-4">
+                            <span class="w-12 h-12 rounded-2xl bg-gradient-to-br ${borderCol} flex items-center justify-center text-white font-black text-xl shadow-sm">
+                                ${day.day}
+                            </span>
+                            <div>
+                                <h3 class="serif-title font-bold text-lg text-earth-900 flex items-center gap-2">
+                                    ${day.weekday}
+                                </h3>
+                                <p class="text-xs text-earth-500">${day.date}</p>
+                            </div>
+                        </div>
+                        <span class="text-xs font-bold uppercase tracking-widest text-earth-600 bg-earth-50 border border-earth-200 px-3 py-1.5 rounded-full">
+                            ${day.badgeText}
+                        </span>
+                    </div>
+
+                    <div class="space-y-3 mb-4">
+                        ${itemHTML}
+                    </div>
+
+                    <div class="mt-4 pt-4 border-t border-earth-200">
+                        <div class="flex items-center gap-2 text-earth-500 hover:text-earth-700 cursor-pointer text-xs font-bold uppercase tracking-wider mb-2" onclick="toggleNoteField(${day.day})">
+                            <svg class="w-4 h-4 text-earth-500 inline-block align-middle" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"></path>
+                                <polyline points="14 2 14 8 20 8"></polyline>
+                                <line x1="16" y1="13" x2="8" y2="13"></line>
+                                <line x1="16" y1="17" x2="8" y2="17"></line>
+                            </svg>
+                            <span>Daily notes diary for Day ${day.day}</span>
+                            <svg id="chevron-note-${day.day}" class="w-4 h-4 ml-auto transition-transform duration-200 inline-block align-middle" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg>
+                        </div>
+                        <div id="note-container-${day.day}" class="hidden mt-2">
+                            <textarea id="textarea-note-${day.day}" oninput="saveDailyNote(${day.day})" placeholder="Write reflections, flight gate details, roommates, or local milestones here..."
+                                      class="w-full h-24 bg-earth-50 border border-earth-200 rounded-xl p-3 text-xs text-earth-700 focus:outline-none focus:border-earth-500 transition-all resize-none"></textarea>
+                        </div>
+                    </div>
+                `;
+                container.appendChild(wrapper);
+            });
+
+            calculateProgress();
+        }
+
+        // Switch View Tab Function
+        function switchTab(viewId) {
+            const timelineView = document.getElementById('view-timeline');
+            const notesView = document.getElementById('view-notes');
+            const tabTimeline = document.getElementById('tab-timeline');
+            const tabNotes = document.getElementById('tab-notes');
+
+            if (viewId === 'timeline') {
+                timelineView.classList.remove('hidden');
+                notesView.classList.add('hidden');
+                tabTimeline.className = "px-6 py-4 text-sm font-semibold border-b-2 border-earth-500 text-earth-900 transition-all focus:outline-none flex items-center gap-2";
+                tabNotes.className = "px-6 py-4 text-sm font-semibold border-b-2 border-transparent text-earth-500 hover:text-earth-900 transition-all focus:outline-none flex items-center gap-2";
+            } else {
+                timelineView.classList.add('hidden');
+                notesView.classList.remove('hidden');
+                tabTimeline.className = "px-6 py-4 text-sm font-semibold border-b-2 border-transparent text-earth-500 hover:text-earth-900 transition-all focus:outline-none flex items-center gap-2";
+                tabNotes.className = "px-6 py-4 text-sm font-semibold border-b-2 border-earth-500 text-earth-900 transition-all focus:outline-none flex items-center gap-2";
+                renderNotesView();
+            }
+        }
+
+        // Toggle Task Complete State
+        function toggleTask(key) {
+            const checkbox = document.getElementById(key);
+            const text = document.getElementById(`text-${key}`);
+            
+            if (checkbox.checked) {
+                checklistStates[key] = true;
+                text.classList.add('line-through', 'text-earth-400');
+            } else {
+                delete checklistStates[key];
+                text.classList.remove('line-through', 'text-earth-400');
+            }
+            
+            localStorage.setItem('hajjChecklist', JSON.stringify(checklistStates));
+            calculateProgress();
+        }
+
+        // Keep local checklist progress monitored
+        function calculateProgress() {
+            let totalTasks = 0;
+            let completedTasks = 0;
+
+            journeyData.forEach(day => {
+                day.items.forEach((item, index) => {
+                    totalTasks++;
+                    const taskKey = `day-${day.day}-task-${index}`;
+                    if (checklistStates[taskKey]) {
+                        completedTasks++;
+                    }
+                });
+            });
+
+            const percent = totalTasks > 0 ? Math.round((completedTasks / totalTasks) * 100) : 0;
+            const progressTxt = document.getElementById('progress-text');
+            if (progressTxt) progressTxt.innerText = `${percent}%`;
+        }
+
+        // Search in real-time inside timeline
+        function searchItinerary() {
+            const query = document.getElementById('itinerary-search').value.toLowerCase();
+            const cards = document.querySelectorAll('.day-card');
+
+            cards.forEach(card => {
+                const text = card.innerText.toLowerCase();
+                if (text.includes(query)) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // Filter Phases
+        function filterPhase(phase) {
+            currentFilter = phase;
+            
+            document.querySelectorAll('.phase-btn').forEach(btn => {
+                btn.className = "phase-btn px-4 py-2.5 rounded-xl text-xs md:text-sm font-semibold transition-all duration-200 bg-white border border-earth-200 hover:border-earth-400 text-earth-700";
+            });
+
+            const activeBtn = document.getElementById(`btn-${phase}`);
+            if (activeBtn) {
+                activeBtn.className = "phase-btn active px-4 py-2.5 rounded-xl text-xs md:text-sm font-semibold transition-all duration-200 bg-earth-500 text-white shadow-sm";
+            }
+
+            renderTimeline();
+        }
+
+        // Daily Diary visibility action
+        function toggleNoteField(dayNum) {
+            const container = document.getElementById(`note-container-${dayNum}`);
+            const chevron = document.getElementById(`chevron-note-${dayNum}`);
+            if (container.classList.contains('hidden')) {
+                container.classList.remove('hidden');
+                chevron.classList.add('rotate-180');
+                // Load saved note
+                const savedNote = localStorage.getItem(`note-day-${dayNum}`) || '';
+                document.getElementById(`textarea-note-${dayNum}`).value = savedNote;
+            } else {
+                container.classList.add('hidden');
+                chevron.classList.remove('rotate-180');
+            }
+        }
+
+        // Save daily diaries
+        function saveDailyNote(dayNum) {
+            const text = document.getElementById(`textarea-note-${dayNum}`).value;
+            localStorage.setItem(`note-day-${dayNum}`, text);
+        }
+
+        // Clear Storage
+        function resetChecklists() {
+            checklistStates = {};
+            localStorage.removeItem('hajjChecklist');
+            renderTimeline();
+        }
+
+        // Multi-notes UI Render Logic
+        function renderNotesView() {
+            renderNotesList();
+            renderActivePane();
+        }
+
+        function renderNotesList() {
+            const listContainer = document.getElementById('notes-list');
+            const searchVal = document.getElementById('notes-search').value.toLowerCase();
+            if (!listContainer) return;
+            listContainer.innerHTML = '';
+
+            const filteredNotes = notesList.filter(note => 
+                note.title.toLowerCase().includes(searchVal) || 
+                note.content.toLowerCase().includes(searchVal) ||
+                note.category.toLowerCase().includes(searchVal)
+            );
+
+            if (filteredNotes.length === 0) {
+                listContainer.innerHTML = `<div class="text-xs text-earth-500 italic p-4 text-center border border-dashed border-earth-200 rounded-xl">No notes found</div>`;
+                return;
+            }
+
+            filteredNotes.forEach(note => {
+                const isActive = note.id === activeNoteId;
+                const activeClasses = isActive 
+                    ? 'border-earth-500 bg-earth-100 shadow-sm' 
+                    : 'border-earth-200 bg-white hover:border-earth-300';
+                
+                const card = document.createElement('div');
+                card.className = `p-4 border-2 rounded-xl cursor-pointer transition-all ${activeClasses}`;
+                card.onclick = () => selectNote(note.id);
+
+                const displayTitle = note.title || 'Untitled Note';
+                const displayContent = note.content || 'Empty note content...';
+
+                card.innerHTML = `
+                    <div class="flex justify-between items-start gap-2 mb-1">
+                        <h4 class="font-bold text-sm text-earth-900 truncate">${displayTitle}</h4>
+                        <span class="text-[9px] font-semibold text-earth-600 bg-earth-200/50 px-2 py-0.5 rounded-full capitalize">${note.category}</span>
+                    </div>
+                    <p class="text-xs text-earth-500 line-clamp-2 mb-2">${displayContent}</p>
+                    <span class="text-[10px] text-earth-400 block">${note.date}</span>
+                `;
+                listContainer.appendChild(card);
+            });
+        }
+
+        function renderActivePane() {
+            const pane = document.getElementById('note-pane-content');
+            if (!pane) return;
+            pane.innerHTML = '';
+
+            const activeNote = notesList.find(n => n.id === activeNoteId);
+
+            if (isEditingNote) {
+                const titleVal = activeNote ? activeNote.title : '';
+                const categoryVal = activeNote ? activeNote.category : 'General';
+                const contentVal = activeNote ? activeNote.content : '';
+                
+                const isGeneral = categoryVal === 'General' ? 'selected' : '';
+                const isHotel = categoryVal === 'Hotel' ? 'selected' : '';
+                const isFlights = categoryVal === 'Flights' ? 'selected' : '';
+                const isDuas = categoryVal === "Du'as" ? 'selected' : '';
+                const isExpenses = categoryVal === 'Expenses' ? 'selected' : '';
+
+                pane.innerHTML = `
+                    <div class="space-y-4 flex-grow flex flex-col justify-between">
+                        <div class="space-y-3">
+                            <div>
+                                <label class="block text-xs font-bold text-earth-600 uppercase tracking-wider mb-1">Note Title</label>
+                                <input type="text" id="edit-note-title" value="${titleVal}" placeholder="e.g. My Du'as list" 
+                                       class="w-full bg-white border border-earth-200 focus:border-earth-500 rounded-xl px-4 py-2.5 text-sm font-semibold text-earth-800 focus:outline-none transition-all">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-earth-600 uppercase tracking-wider mb-1">Category</label>
+                                <select id="edit-note-category" class="w-full bg-white border border-earth-200 focus:border-earth-500 rounded-xl px-4 py-2.5 text-sm text-earth-800 focus:outline-none transition-all">
+                                    <option value="General" ${isGeneral}>General</option>
+                                    <option value="Hotel" ${isHotel}>Hotel</option>
+                                    <option value="Flights" ${isFlights}>Flights</option>
+                                    <option value="Du'as" ${isDuas}>Du'as</option>
+                                    <option value="Expenses" ${isExpenses}>Expenses</option>
+                                </select>
+                            </div>
+                            <div class="flex-grow">
+                                <label class="block text-xs font-bold text-earth-600 uppercase tracking-wider mb-1">Note Body</label>
+                                <textarea id="edit-note-content" placeholder="Type your notes here..." 
+                                          class="w-full h-64 bg-white border border-earth-200 focus:border-earth-500 rounded-xl p-4 text-sm text-earth-700 focus:outline-none transition-all resize-none">${contentVal}</textarea>
+                            </div>
+                        </div>
+                        <div class="flex justify-end gap-3 pt-4 border-t border-earth-200">
+                            <button onclick="cancelNoteEdit()" class="px-4 py-2 bg-white border border-earth-200 hover:border-earth-400 text-earth-700 rounded-xl text-xs font-semibold transition-all">
+                                Cancel
+                            </button>
+                            <button onclick="saveNote()" class="px-5 py-2 bg-earth-500 hover:bg-earth-600 text-white rounded-xl text-xs font-semibold transition-all">
+                                Save note
+                            </button>
+                        </div>
+                    </div>
+                `;
+            } else {
+                if (!activeNote) {
+                    pane.innerHTML = `
+                        <div class="flex flex-col items-center justify-center text-center py-20">
+                            <svg class="w-12 h-12 text-earth-300 mb-3" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                            </svg>
+                            <h4 class="font-bold text-earth-700 mb-1">No note selected</h4>
+                            <p class="text-xs text-earth-500">Choose a note from the sidebar or click "Add new note" to create one.</p>
+                        </div>
+                    `;
+                    return;
+                }
+
+                pane.innerHTML = `
+                    <div class="flex flex-col gap-4 h-full">
+                        <div>
+                            <h3 class="text-lg font-bold text-earth-900 mb-1">${activeNote.title}</h3>
+                            <div class="flex gap-2 items-center">
+                                <span class="text-[10px] font-semibold text-earth-600 bg-earth-200 px-2.5 py-1 rounded-full capitalize">${activeNote.category}</span>
+                                <span class="text-xs text-earth-500">${activeNote.date}</span>
+                            </div>
+                        </div>
+                        <div class="flex-grow overflow-y-auto">
+                            <p class="note-display text-sm text-earth-800 leading-relaxed">${activeNote.content}</p>
+                        </div>
+                        <div class="flex justify-end gap-3 pt-4 border-t border-earth-200 mt-auto">
+                            <button onclick="editNote()" class="px-4 py-2 bg-earth-500 hover:bg-earth-600 text-white rounded-xl text-xs font-semibold transition-all">
+                                Edit note
+                            </button>
+                        </div>
+                    </div>
+                `;
+            }
+        }
+
+        function selectNote(noteId) {
+            activeNoteId = noteId;
+            isEditingNote = false;
+            renderNotesView();
+        }
+
+        function editNote() {
+            isEditingNote = true;
+            renderActivePane();
+        }
+
+        function cancelNoteEdit() {
+            isEditingNote = false;
+            renderActivePane();
+        }
+
+        function saveNote() {
+            if (!activeNoteId) return;
+            
+            const titleEl = document.getElementById('edit-note-title');
+            const categoryEl = document.getElementById('edit-note-category');
+            const contentEl = document.getElementById('edit-note-content');
+
+            if (!titleEl || !contentEl) return;
+
+            const noteIndex = notesList.findIndex(n => n.id === activeNoteId);
+            if (noteIndex !== -1) {
+                notesList[noteIndex].title = titleEl.value;
+                notesList[noteIndex].category = categoryEl.value;
+                notesList[noteIndex].content = contentEl.value;
+                notesList[noteIndex].date = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+            }
+
+            localStorage.setItem('hajjMultiNotes', JSON.stringify(notesList));
+            isEditingNote = false;
+            renderNotesView();
+        }
+
+        function createNewNote() {
+            const newNote = {
+                id: `note-${Date.now()}`,
+                title: 'New Note',
+                category: 'General',
+                content: '',
+                date: new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })
+            };
+
+            notesList.push(newNote);
+            activeNoteId = newNote.id;
+            isEditingNote = true;
+            renderNotesView();
+        }
+
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Show back-to-top button
+        window.addEventListener('scroll', () => {
+            const btn = document.getElementById('back-to-top');
+            if (window.scrollY > 300) {
+                btn.classList.remove('translate-y-24', 'opacity-0');
+            } else {
+                btn.classList.add('translate-y-24', 'opacity-0');
+            }
+        });
+
+        // Initialize on page load
+        renderTimeline();
+    </script>
+</body>
+</html>
