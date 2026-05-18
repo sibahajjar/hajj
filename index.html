@@ -628,6 +628,7 @@
         let notesList = JSON.parse(localStorage.getItem('hajjMultiNotes')) || [];
         let activeNoteId = notesList.length > 0 ? notesList[0].id : null;
         let isEditingNote = false;
+        let confirmDelete = false;
 
         // Render Cards dynamically inside timeline
         function renderTimeline() {
@@ -1005,6 +1006,9 @@
                             <p class="note-display text-sm text-earth-800 leading-relaxed">${activeNote.content}</p>
                         </div>
                         <div class="flex justify-end gap-3 pt-4 border-t border-earth-200 mt-auto">
+                            <button id="delete-note-btn" onclick="deleteNote()" class="px-4 py-2 bg-red-500 hover:bg-red-600 text-white rounded-xl text-xs font-semibold transition-all">
+                                Delete note
+                            </button>
                             <button onclick="editNote()" class="px-4 py-2 bg-earth-500 hover:bg-earth-600 text-white rounded-xl text-xs font-semibold transition-all">
                                 Edit note
                             </button>
@@ -1017,6 +1021,7 @@
         function selectNote(noteId) {
             activeNoteId = noteId;
             isEditingNote = false;
+            confirmDelete = false;
             renderNotesView();
         }
 
@@ -1064,6 +1069,29 @@
             notesList.push(newNote);
             activeNoteId = newNote.id;
             isEditingNote = true;
+            renderNotesView();
+        }
+
+        function deleteNote() {
+            if (!activeNoteId) return;
+            
+            const deleteBtn = document.getElementById('delete-note-btn');
+            if (!deleteBtn) return;
+
+            if (!confirmDelete) {
+                confirmDelete = true;
+                deleteBtn.innerText = 'Confirm Delete?';
+                deleteBtn.classList.remove('bg-red-500', 'hover:bg-red-600');
+                deleteBtn.classList.add('bg-orange-500', 'hover:bg-orange-600');
+                return;
+            }
+
+            confirmDelete = false;
+            notesList = notesList.filter(n => n.id !== activeNoteId);
+            localStorage.setItem('hajjMultiNotes', JSON.stringify(notesList));
+            
+            activeNoteId = notesList.length > 0 ? notesList[0].id : null;
+            isEditingNote = false;
             renderNotesView();
         }
 
